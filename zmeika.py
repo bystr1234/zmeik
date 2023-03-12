@@ -11,8 +11,8 @@ score = 0
 sc = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Snake by vbystrov")
 
-foodx = round(random.randrange(0, W, 20) // 10.0) * 10.0
-foody = round(random.randrange(0, H, 20) // 10.0) * 10.0
+f_x = round(random.randrange(0, W, 20) // 10.0) * 10.0
+f_y = round(random.randrange(0, H, 20) // 10.0) * 10.0
 
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -54,7 +54,7 @@ up = 0
 down = 0
 
 while not game_over:
-    #повороты
+
     if right == 1:
         x += speed
     elif left == 1:
@@ -63,7 +63,7 @@ while not game_over:
         y -= speed
     elif down == 1:
         y += speed
-    #проверка на границы
+
     if x > W:
         x = 0
     elif x < 0:
@@ -72,8 +72,6 @@ while not game_over:
         y = 0
     elif y < 0:
         y = H
-
-    #еда
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -105,7 +103,7 @@ while not game_over:
             game_over = True
 
     sc.fill(GREY)
-    pygame.draw.rect(sc, (47, 79, 79), [foodx, foody, snake_block, snake_block])
+    pygame.draw.rect(sc, (47, 79, 79), [f_x, f_y, snake_block, snake_block])
     our_snake(snake_block, snake_List)
     ms = str('Счет:' + str(score))
 
@@ -114,13 +112,9 @@ while not game_over:
     pygame.display.update()
     clock.tick(FPS)
 
-
-
-
-
-    if x == foodx and y == foody:
-        foodx = round(random.randrange(0, W, 20) // 10.0) * 10.0
-        foody = round(random.randrange(0, H, 20) // 10.0) * 10.0
+    if x == f_x and y == f_y:
+        f_x = round(random.randrange(0, W, 20) // 10.0) * 10.0
+        f_y = round(random.randrange(0, H, 20) // 10.0) * 10.0
         Length_of_snake += 1
         score += 1
 
