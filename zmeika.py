@@ -1,3 +1,4 @@
+#Игра змейка
 import pygame
 import random
 import time
